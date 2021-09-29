@@ -17,13 +17,13 @@ public class Address implements Serializable {
     public void setId(Long id) {this.id = id;}
 
     public Integer zipCode;
-    public City cityInfo;
+    public CityInfo cityInfo;
     public String streetName;
     public String houseNr;
 
     public Address(){}
 
-    public Address(Integer zipCode, City city, String streetName, String houseNr){
+    public Address(Integer zipCode, CityInfo city, String streetName, String houseNr){
         this.zipCode = zipCode;
         this.cityInfo = city;
         this.streetName = streetName;
@@ -39,11 +39,11 @@ public class Address implements Serializable {
         this.zipCode = zipCode;
     }
 
-    public City getCityInfo() {
+    public CityInfo getCityInfo() {
         return cityInfo;
     }
 
-    public void setCityInfo(City cityInfo) {
+    public void setCityInfo(CityInfo cityInfo) {
         this.cityInfo = cityInfo;
     }
 

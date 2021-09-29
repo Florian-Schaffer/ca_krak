@@ -1,6 +1,8 @@
 package entities;
 
 import com.sun.tools.javac.jvm.Gen;
+import dtos.AddressDTO;
+import dtos.HobbyDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,39 +14,47 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, length = 6)
-    private Long id;
+    private Integer id;
 
     public String firstName;
     public String lastName;
     public String email;
-    public Long phone;
-    public Address address;
-    public Hobby hobby;
+    public Integer phone;
+    public Integer age;
+    public AddressDTO addressDTO;
+    public HobbyDTO hobbyDTO;
 
-    public Hobby getHobby() {
-        return hobby;
+    public HobbyDTO getHobby() {
+        return hobbyDTO;
     }
 
 
     public Person(){
     }
 
-    public Person(String firstName, String lastName, String email, Long phone, Address address, Hobby hobby){
+    public Person(String firstName, String lastName, String email, Integer phone, Integer age, AddressDTO address, HobbyDTO hobby){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.address = address;
-        this.hobby = hobby;
+        this.age = age;
+        this.addressDTO = address;
+        this.hobbyDTO = hobby;
     }
 
 
 
+    public Integer getAge() {
+        return age;
+    }
 
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-    public Long getId(){return id;}
+    public Integer getId(){return id;}
 
-    public void setId(Long id) {this.id = id;}
+    public void setId(Integer id) {this.id = id;}
 
     public String getFirstName() {
         return firstName;
@@ -70,28 +80,28 @@ public class Person implements Serializable {
         this.email = email;
     }
 
-    public Long getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressDTO getAddress() {
+        return addressDTO;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(AddressDTO address) {
+        this.addressDTO = addressDTO;
     }
 
-    public Hobby getHobbies() {
-        return hobby;
+    public HobbyDTO getHobbies() {
+        return hobbyDTO;
     }
 
-    public void setHobbies(Hobby hobby) {
-        this.hobby = hobby;
+    public void setHobbies(HobbyDTO hobby) {
+        this.hobbyDTO = hobbyDTO;
     }
 
 
