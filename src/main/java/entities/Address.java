@@ -1,7 +1,10 @@
 package entities;
 
+import dtos.CityInfoDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 public class Address implements Serializable {
@@ -10,43 +13,32 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, length = 6)
-    private Long id;
+    private Integer id;
 
-    public Long getId() {return id;}
 
-    public void setId(Long id) {this.id = id;}
-
-    public Integer zipCode;
-    public CityInfo cityInfo;
-    public String streetName;
-    public String houseNr;
+    private CityInfoDTO cityInfo;
+    private String streetName;
+    private String houseNr;
 
     public Address(){}
 
-    public Address(Integer zipCode, CityInfo city, String streetName, String houseNr){
-        this.zipCode = zipCode;
+    public Address(CityInfoDTO city, String streetName, String houseNr){
         this.cityInfo = city;
         this.streetName = streetName;
         this.houseNr = houseNr;
     }
 
 
-    public Integer getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public CityInfo getCityInfo() {
+    //city
+    public CityInfoDTO getCityInfo() {
         return cityInfo;
     }
 
-    public void setCityInfo(CityInfo cityInfo) {
+    public void setCityInfo(CityInfoDTO cityInfo) {
         this.cityInfo = cityInfo;
     }
 
+    //streetname
     public String getStreetName() {
         return streetName;
     }
@@ -55,6 +47,7 @@ public class Address implements Serializable {
         this.streetName = streetName;
     }
 
+    //house nr
     public String getHouseNr() {
         return houseNr;
     }
@@ -62,6 +55,14 @@ public class Address implements Serializable {
     public void setHouseNr(String houseNr) {
         this.houseNr = houseNr;
     }
+
+    //id
+    public Integer getId() {return id;}
+
+    public void setId(Integer id) {this.id = id;}
+
+
+
 }
 
 

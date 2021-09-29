@@ -13,9 +13,9 @@ public class PersonDTO {
     public Integer phone;
     public Integer age;
     public AddressDTO address;
-    public HobbyDTO hobby;
+    public HobbyListDTO hobby;
 
-
+    public PersonDTO(){}
 
     public PersonDTO(Person person){
         if(person.getId()!=null)
@@ -25,9 +25,10 @@ public class PersonDTO {
         this.email = person.getEmail();
         this.phone = person.getPhone();
         this.address = person.getAddress();
-        this.hobby = person.getHobby();
+        this.hobby = person.getHobbyListDTO();
     }
 
+    //age
     public Integer getAge() {
         return age;
     }
@@ -36,6 +37,7 @@ public class PersonDTO {
         this.age = age;
     }
 
+    //id
     public Integer getId() {
         return id;
     }
@@ -44,6 +46,7 @@ public class PersonDTO {
         this.id = id;
     }
 
+    //first name
     public String getFirstName() {
         return firstName;
     }
@@ -52,6 +55,7 @@ public class PersonDTO {
         this.firstName = firstName;
     }
 
+    //last name
     public String getLastName() {
         return lastName;
     }
@@ -60,6 +64,7 @@ public class PersonDTO {
         this.lastName = lastName;
     }
 
+    //email
     public String getEmail() {
         return email;
     }
@@ -68,6 +73,7 @@ public class PersonDTO {
         this.email = email;
     }
 
+    //phone
     public Integer getPhone() {
         return phone;
     }
@@ -76,6 +82,7 @@ public class PersonDTO {
         this.phone = phone;
     }
 
+    //address
     public AddressDTO getAddress() {
         return address;
     }
@@ -84,11 +91,12 @@ public class PersonDTO {
         this.address = address;
     }
 
-    public HobbyDTO getHobby() {
+    //hobby
+    public HobbyListDTO getHobby() {
         return hobby;
     }
 
-    public void setHobby(HobbyDTO hobby) {
+    public void setHobby(HobbyListDTO hobby) {
         this.hobby = hobby;
     }
 }

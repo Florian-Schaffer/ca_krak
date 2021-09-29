@@ -11,12 +11,13 @@ public class Hobby implements Serializable {
     @Column(length = 50)
     private String name;
 
-    private Long id;
+    private Integer id;
     private String wikiLink;
     private String category;
     private String type;
 
 
+    //name
     public String getName() {
         return name;
     }
@@ -25,6 +26,7 @@ public class Hobby implements Serializable {
         this.name = name;
     }
 
+    //wikilink
     public String getWikiLink() {
         return wikiLink;
     }
@@ -33,6 +35,7 @@ public class Hobby implements Serializable {
         this.wikiLink = wikiLink;
     }
 
+    //category
     public String getCategory() {
         return category;
     }
@@ -41,6 +44,7 @@ public class Hobby implements Serializable {
         this.category = category;
     }
 
+    //type
     public String getType() {
         return type;
     }
@@ -49,9 +53,10 @@ public class Hobby implements Serializable {
         this.type = type;
     }
 
-    public Long getId() { return id; }
+    //id
+    public Integer getId() { return id; }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

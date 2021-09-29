@@ -3,6 +3,7 @@ package entities;
 import com.sun.tools.javac.jvm.Gen;
 import dtos.AddressDTO;
 import dtos.HobbyDTO;
+import dtos.HobbyListDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,28 +23,24 @@ public class Person implements Serializable {
     public Integer phone;
     public Integer age;
     public AddressDTO addressDTO;
-    public HobbyDTO hobbyDTO;
-
-    public HobbyDTO getHobby() {
-        return hobbyDTO;
-    }
+    public HobbyListDTO hobbyListDTO;
 
 
     public Person(){
     }
 
-    public Person(String firstName, String lastName, String email, Integer phone, Integer age, AddressDTO address, HobbyDTO hobby){
+    public Person(String firstName, String lastName, String email, Integer phone, Integer age, AddressDTO address, HobbyListDTO hobby){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.age = age;
         this.addressDTO = address;
-        this.hobbyDTO = hobby;
+        this.hobbyListDTO = hobby;
     }
 
 
-
+    //age
     public Integer getAge() {
         return age;
     }
@@ -52,18 +49,19 @@ public class Person implements Serializable {
         this.age = age;
     }
 
+    //id
     public Integer getId(){return id;}
 
     public void setId(Integer id) {this.id = id;}
 
+    //first name
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
+    //last name
     public String getLastName() {
         return lastName;
     }
@@ -72,6 +70,7 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
+    //email
     public String getEmail() {
         return email;
     }
@@ -80,6 +79,7 @@ public class Person implements Serializable {
         this.email = email;
     }
 
+    //phone
     public Integer getPhone() {
         return phone;
     }
@@ -88,6 +88,7 @@ public class Person implements Serializable {
         this.phone = phone;
     }
 
+    //address
     public AddressDTO getAddress() {
         return addressDTO;
     }
@@ -96,13 +97,10 @@ public class Person implements Serializable {
         this.addressDTO = addressDTO;
     }
 
-    public HobbyDTO getHobbies() {
-        return hobbyDTO;
-    }
+    //hobby list
+    public HobbyListDTO getHobbyListDTO(){return hobbyListDTO;}
 
-    public void setHobbies(HobbyDTO hobby) {
-        this.hobbyDTO = hobbyDTO;
-    }
+    public void setHobbyListDTO(HobbyListDTO hobbyList){this.hobbyListDTO = hobbyList;}
 
 
 

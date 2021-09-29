@@ -3,19 +3,24 @@ package dtos;
 import entities.Hobby;
 
 public class HobbyDTO {
+    private Integer id;
     private String name;
     private String wikiLink;
     private String category;
     private String type;
 
+    public HobbyDTO(){}
+
     public HobbyDTO(Hobby hobby){
         if(hobby.getName() != null)
+            this.id = hobby.getId();
             this.name = hobby.getName();
             this.wikiLink = hobby.getWikiLink();
             this.category = hobby.getCategory();
             this.type = hobby.getType();
     }
 
+    //name
     public String getName() {
         return name;
     }
@@ -24,6 +29,7 @@ public class HobbyDTO {
         this.name = name;
     }
 
+    //wikilink
     public String getWikiLink() {
         return wikiLink;
     }
@@ -32,6 +38,7 @@ public class HobbyDTO {
         this.wikiLink = wikiLink;
     }
 
+    //category
     public String getCategory() {
         return category;
     }
@@ -40,6 +47,7 @@ public class HobbyDTO {
         this.category = category;
     }
 
+    //type
     public String getType() {
         return type;
     }
