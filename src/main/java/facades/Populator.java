@@ -24,6 +24,8 @@ public class Populator {
 
         em.getTransaction().commit();
     }
+
+
     
     public static void main(String[] args) {
         populate();

@@ -3,7 +3,6 @@ package entities;
 
 import dtos.AddressDTO;
 import dtos.HobbyListDTO;
-import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HobbyDTO {
-    private Integer id;
     private String name;
     private String wikiLink;
     private String category;
@@ -29,21 +28,13 @@ public class HobbyDTO {
 
     public HobbyDTO(Hobby hobby){
         if(hobby.getName() != null)
-            this.id = hobby.getId();
             this.name = hobby.getName();
             this.wikiLink = hobby.getWikiLink();
             this.category = hobby.getCategory();
             this.type = hobby.getType();
     }
 
-    //id
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     //name
     public String getName() {

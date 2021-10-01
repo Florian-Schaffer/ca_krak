@@ -11,11 +11,9 @@ public class Hobby implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 50, name = "id", nullable = false)
+    @Column(length = 50, name = "name", nullable = false)
     private String name;
 
-    private Integer id;
     private String wikiLink;
     private String category;
     private String type;
@@ -73,12 +71,6 @@ public class Hobby implements Serializable {
         this.type = type;
     }
 
-    //id
-    public Integer getId() { return id; }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     //persons
 

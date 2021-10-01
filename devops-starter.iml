@@ -20,7 +20,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
-          <factory-entry name="pu" />
+          <factory-entry name="pu" value="fdb771ed-5dda-4f37-864c-45d6aeed8f58" />
           <factory-entry name="puTest" />
         </datasource-mapping>
         <naming-strategy-map />
