@@ -1,33 +1,48 @@
 package entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@NamedQuery(name = "CityInfo.deleteAllRows", query = "DELETE from CityInfo")
 public class CityInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(length = 4)
-    private String zipCode;
-    @Column(length = 35)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+    private int zipCode;
     private String city;
+
+    @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.PERSIST)
+    private List<Address> addresses;
 
     public CityInfo(){}
 
-    public CityInfo(String zipCode, String city){
+
+    public CityInfo(Integer zipCode, String city){
         this.zipCode = zipCode;
         this. city = city;
+        this.addresses = new ArrayList<>();
     }
 
+    //id
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     //zipcode
-    public String getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -40,8 +55,20 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
+    //addresses
+    public List<Address> getAddresses() {
+        return addresses;
+    }
 
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
 
-
+    public void addAddress(Address address){
+        this.addresses.add(address);
+        if(address != null){
+            address.setCityInfo(this);
+        }
+    }
 
 }

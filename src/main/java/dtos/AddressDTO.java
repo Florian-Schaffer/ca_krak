@@ -1,24 +1,39 @@
 package dtos;
 
 import entities.Address;
+import entities.CityInfo;
+import entities.Hobby;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 public class AddressDTO {
-    private Integer id;
 
-    private CityInfoDTO cityInfoDTO;
+    private Integer id;
+    private CityInfo cityInfo;
     private String streetName;
-    private String houseNr;
+
+
 
     public AddressDTO(){}
 
     public AddressDTO(Address address){
         if(address.getId() != null) {
             this.id = address.getId();
-            this.cityInfoDTO = address.getCityInfo();
+            this.cityInfo = address.getCityInfo();
             this.streetName = address.getStreetName();
-            this.houseNr = address.getHouseNr();
+
         }
     }
+
+/*
+    public static AddressDTO getFromList(Address address){
+        return address.stream();
+                .map(address -> new AddressDTO(address))
+                .collect(Collectors.toList());
+    }
+    */
 
 
     //id
@@ -31,12 +46,12 @@ public class AddressDTO {
     }
 
     //city
-    public CityInfoDTO getCityInfoDTO() {
-        return cityInfoDTO;
+    public CityInfo getCityInfo() {
+        return cityInfo;
     }
 
-    public void setCityInfoDTO(CityInfoDTO cityInfoDTO) {
-        this.cityInfoDTO = cityInfoDTO;
+    public void setCityInfo(CityInfo cityInfo) {
+        this.cityInfo = cityInfo;
     }
 
     //streetname
@@ -48,14 +63,6 @@ public class AddressDTO {
         this.streetName = streetName;
     }
 
-    //house nr
-    public String getHouseNr() {
-        return houseNr;
-    }
-
-    public void setHouseNr(String houseNr) {
-        this.houseNr = houseNr;
-    }
 
 
 }

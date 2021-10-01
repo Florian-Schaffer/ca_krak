@@ -2,13 +2,17 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@NamedQueries({@NamedQuery(name = "Hobby.deleteAllRows", query = "DELETE from Hobby")})
 public class Hobby implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(length = 50)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 50, name = "id", nullable = false)
     private String name;
 
     private Integer id;
@@ -16,6 +20,22 @@ public class Hobby implements Serializable {
     private String category;
     private String type;
 
+    @ManyToMany
+    @JoinTable(
+            name = "link_person_hobby",
+            joinColumns = @JoinColumn(name = "id")
+    )
+    private List<Person> persons;
+
+    public Hobby(){}
+
+    public Hobby(String name, String wikiLink, String category, String type){
+        this.name = name;
+        this.wikiLink = wikiLink;
+        this.category = category;
+        this.type = type;
+        this.persons = new ArrayList<>();
+    }
 
     //name
     public String getName() {
@@ -60,11 +80,14 @@ public class Hobby implements Serializable {
         this.id = id;
     }
 
+    //persons
 
 
+    public List<Person> getPersons() {
+        return persons;
+    }
 
-
-
-
-
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
+    }
 }

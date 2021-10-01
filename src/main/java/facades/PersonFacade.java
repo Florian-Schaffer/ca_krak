@@ -2,6 +2,7 @@ package facades;
 
 import dtos.PersonDTO;
 import entities.Person;
+import entities.Phone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,6 +38,20 @@ public class PersonFacade {
         }
     }
 
+    public static PersonDTO getPersonByPhone(List<Phone> phone){
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Person person = em.find(Person.class,phone);
+        em.getTransaction().commit();
+        em.close();
+
+        if(person != null){
+            return new PersonDTO(person);
+        }else{
+            return null;
+        }
+    }
+
 
     @SuppressWarnings("unchecked")
     public PersonDTO editBasicInfo(PersonDTO personDTO){
@@ -47,7 +62,7 @@ public class PersonFacade {
             em.getTransaction().begin();
             updated.setFirstName(personDTO.getFirstName());
             updated.setLastName(personDTO.getLastName());
-            updated.setPhone(personDTO.getPhone());
+            updated.setPhones(personDTO.getPhones());
             updated.setEmail(personDTO.getEmail());
             updated.setAge(personDTO.getAge());
             em.getTransaction().commit();
@@ -56,6 +71,9 @@ public class PersonFacade {
             em.close();
         }
     }
+
+
+
 
 
 }

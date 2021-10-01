@@ -1,14 +1,17 @@
 package entities;
 
-import com.sun.tools.javac.jvm.Gen;
+
 import dtos.AddressDTO;
-import dtos.HobbyDTO;
 import dtos.HobbyListDTO;
+import jdk.jfr.Name;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@NamedQuery(name = "Person.deleteAllRows", query = "DELETE from Person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,23 +23,35 @@ public class Person implements Serializable {
     public String firstName;
     public String lastName;
     public String email;
-    public Integer phone;
     public Integer age;
-    public AddressDTO addressDTO;
-    public HobbyListDTO hobbyListDTO;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.PERSIST)
+    private List<Phone> phones = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Address address;
+
+    @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
+    private List<Hobby> hobbyList = new ArrayList<>();
 
 
     public Person(){
     }
 
-    public Person(String firstName, String lastName, String email, Integer phone, Integer age, AddressDTO address, HobbyListDTO hobby){
+    public Person(String email, String firstName, String lastName){
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public Person(String firstName, String lastName, String email, List<Phone> phones, Integer age, Address address, List<Hobby> hobbyList){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phone = phone;
+        this.phones = phones;
         this.age = age;
-        this.addressDTO = address;
-        this.hobbyListDTO = hobby;
+        this.address = address;
+        this.hobbyList = hobbyList;
     }
 
 
@@ -80,27 +95,27 @@ public class Person implements Serializable {
     }
 
     //phone
-    public Integer getPhone() {
-        return phone;
+    public List<Phone> getPhones() {
+        return phones;
     }
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
     //address
-    public AddressDTO getAddress() {
-        return addressDTO;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress(AddressDTO address) {
-        this.addressDTO = addressDTO;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     //hobby list
-    public HobbyListDTO getHobbyListDTO(){return hobbyListDTO;}
+    public List<Hobby> getHobbyList(){return hobbyList;}
 
-    public void setHobbyListDTO(HobbyListDTO hobbyList){this.hobbyListDTO = hobbyList;}
+    public void setHobbyListDTO(List<Hobby> hobbyList){this.hobbyList = hobbyList;}
 
 
 

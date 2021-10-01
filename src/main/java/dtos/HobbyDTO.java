@@ -2,6 +2,9 @@ package dtos;
 
 import entities.Hobby;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class HobbyDTO {
     private Integer id;
     private String name;
@@ -9,7 +12,20 @@ public class HobbyDTO {
     private String category;
     private String type;
 
+    public static List<HobbyDTO> getFromList(List<Hobby> hobbies){
+        return hobbies.stream()
+                .map(hobby -> new HobbyDTO(hobby))
+                .collect(Collectors.toList());
+    }
+
     public HobbyDTO(){}
+
+    public HobbyDTO(String name, String wikiLink, String category, String type){
+        this.name = name;
+        this.wikiLink = wikiLink;
+        this.category = category;
+        this.type = type;
+    }
 
     public HobbyDTO(Hobby hobby){
         if(hobby.getName() != null)
@@ -18,6 +34,15 @@ public class HobbyDTO {
             this.wikiLink = hobby.getWikiLink();
             this.category = hobby.getCategory();
             this.type = hobby.getType();
+    }
+
+    //id
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     //name

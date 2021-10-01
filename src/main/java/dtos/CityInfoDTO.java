@@ -2,8 +2,9 @@ package dtos;
 
 import entities.CityInfo;
 
+
 public class CityInfoDTO {
-    private String zipCode;
+    private Integer zipCode;
     private String city;
 
     public CityInfoDTO(){ }
@@ -17,11 +18,11 @@ public class CityInfoDTO {
 
 
     //zipcode
-    public String getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(String zipCode) {
+    public void setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
     }
 
