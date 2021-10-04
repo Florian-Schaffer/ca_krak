@@ -2,6 +2,8 @@ package dtos;
 
 import entities.Hobby;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,13 @@ public class HobbyDTO {
     private String wikiLink;
     private String category;
     private String type;
+
+
+    public static List<HobbyDTO> getHobbyDtos(List<Hobby> hobbies){
+        List<HobbyDTO> hbDtos = new ArrayList();
+        hobbies.forEach(hobby->hbDtos.add(new HobbyDTO(hobby)));
+        return hbDtos;
+    }
 
     public static List<HobbyDTO> getFromList(List<Hobby> hobbies){
         return hobbies.stream()

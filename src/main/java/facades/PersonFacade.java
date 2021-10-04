@@ -6,6 +6,7 @@ import entities.Phone;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PersonFacade {
@@ -23,6 +24,11 @@ public class PersonFacade {
         }
         return instance;
     }
+
+    private EntityManager getEntityManager(){return emf.createEntityManager();}
+
+
+
 
     public static PersonDTO getPersonById(Integer id){
         EntityManager em = emf.createEntityManager();
@@ -52,6 +58,19 @@ public class PersonFacade {
         }
     }
 
+    public PersonDTO createPerson(PersonDTO person){
+        Person person1 = new Person(person.getEmail(),person.getFirstName(),person.getLastName());
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.persist(person1);
+            em.getTransaction().commit();
+        }finally{
+            em.close();
+        }
+        return new PersonDTO(person1);
+    }
+
 
     @SuppressWarnings("unchecked")
     public PersonDTO editBasicInfo(PersonDTO personDTO){
@@ -72,6 +91,23 @@ public class PersonFacade {
         }
     }
 
+
+    public Integer getPersonCount(){
+        EntityManager em = emf.createEntityManager();
+        try{
+            Integer personCount = (Integer)em.createQuery("SELECT COUNT(p) FROM Person p").getSingleResult();
+            return personCount;
+        }finally{
+            em.close();
+        }
+    }
+
+    public List<PersonDTO> getAll(){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
+        List<Person> persons = query.getResultList();
+        return PersonDTO.getPersonDtos(persons);
+    }
 
 
 

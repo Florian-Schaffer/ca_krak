@@ -18,7 +18,6 @@ public class Address implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     private String streetName;
-    private String additionalInfo;
 
     @ManyToOne
     private CityInfo cityInfo;
@@ -28,8 +27,8 @@ public class Address implements Serializable {
 
     public Address(){}
 
-    public Address(String additionalInfo, String streetName){
-        this.additionalInfo = additionalInfo;
+    public Address(CityInfo cityInfo, String streetName){
+        this.cityInfo = cityInfo;
         this.streetName = streetName;
         persons = new ArrayList<>();
     }
@@ -51,15 +50,6 @@ public class Address implements Serializable {
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
-    }
-
-    //additional info
-    public String getAdditionalInfo() {
-        return additionalInfo;
-    }
-
-    public void setAdditionalInfo(String additionalInfo) {
-        this.additionalInfo = additionalInfo;
     }
 
     //id

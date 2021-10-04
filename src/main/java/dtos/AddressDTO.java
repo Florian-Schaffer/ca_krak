@@ -4,6 +4,8 @@ import entities.Address;
 import entities.CityInfo;
 import entities.Hobby;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,17 +13,21 @@ import java.util.stream.Collectors;
 public class AddressDTO {
 
     private Integer id;
-    private CityInfo cityInfo;
+    private CityInfoDTO cityInfoDTO;
     private String streetName;
 
-
+    public static List<AddressDTO> getAddressDtos(List<Address> adds){
+        List<AddressDTO> addressdtos = new ArrayList();
+        adds.forEach(add->addressdtos.add(new AddressDTO(add)));
+        return addressdtos;
+    }
 
     public AddressDTO(){}
 
     public AddressDTO(Address address){
         if(address.getId() != null) {
             this.id = address.getId();
-            this.cityInfo = address.getCityInfo();
+            this.cityInfoDTO = new CityInfoDTO(address.getCityInfo());
             this.streetName = address.getStreetName();
 
         }
@@ -33,7 +39,7 @@ public class AddressDTO {
                 .map(address -> new AddressDTO(address))
                 .collect(Collectors.toList());
     }
-    */
+  */
 
 
     //id
@@ -46,12 +52,12 @@ public class AddressDTO {
     }
 
     //city
-    public CityInfo getCityInfo() {
-        return cityInfo;
+    public CityInfoDTO getCityInfo() {
+        return cityInfoDTO;
     }
 
-    public void setCityInfo(CityInfo cityInfo) {
-        this.cityInfo = cityInfo;
+    public void setCityInfo(CityInfoDTO cityInfo) {
+        this.cityInfoDTO = cityInfo;
     }
 
     //streetname

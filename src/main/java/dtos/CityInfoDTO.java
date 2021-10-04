@@ -2,10 +2,20 @@ package dtos;
 
 import entities.CityInfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CityInfoDTO {
     private Integer zipCode;
     private String city;
+
+
+    public static List<CityInfoDTO> getCityDtos(List<CityInfo> CI){
+        List<CityInfoDTO> CIdtos = new ArrayList();
+        CI.forEach(cityI->CIdtos.add(new CityInfoDTO(cityI)));
+        return CIdtos;
+    }
 
     public CityInfoDTO(){ }
 
