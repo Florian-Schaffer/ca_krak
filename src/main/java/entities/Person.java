@@ -1,9 +1,6 @@
 package entities;
 
 
-import dtos.AddressDTO;
-import dtos.HobbyListDTO;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -102,6 +99,8 @@ public class Person implements Serializable {
         this.phones = phones;
     }
 
+    public void addPhone(Phone phone){phones.add(phone);}
+
     //address
     public Address getAddress() {
         return address;
@@ -114,7 +113,9 @@ public class Person implements Serializable {
     //hobby list
     public List<Hobby> getHobbyList(){return hobbyList;}
 
-    public void setHobbyListDTO(List<Hobby> hobbyList){this.hobbyList = hobbyList;}
+    public void setHobbyList(List<Hobby> hobbyList){this.hobbyList = hobbyList;}
+
+    public void addHobby(Hobby hobby){hobbyList.add(hobby);}
 
 
 

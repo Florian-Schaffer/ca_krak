@@ -2,6 +2,8 @@ package entities;
 
 
 
+import dtos.Phone.PhoneDTO;
+
 import javax.persistence.*;
 
     @Entity
@@ -20,6 +22,12 @@ import javax.persistence.*;
         private Person person;
 
         public Phone(){}
+
+        public Phone(PhoneDTO phoneDTO){
+            this.number = phoneDTO.getNumber();
+            this.description = phoneDTO.getDescription();
+            this.id = phoneDTO.getId();
+        }
 
         public Phone(String number, String description){
             this.number = number;

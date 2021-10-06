@@ -1,4 +1,4 @@
-package dtos;
+package dtos.Hobbies;
 
 import entities.Hobby;
 

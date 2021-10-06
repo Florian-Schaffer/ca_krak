@@ -1,7 +1,5 @@
 package entities;
 
-import dtos.CityInfoDTO;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,9 +13,10 @@ public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @Column(name = "street", nullable = false)
     private String streetName;
+    private String additionalInfo;
+
 
     @ManyToOne
     private CityInfo cityInfo;
@@ -27,9 +26,9 @@ public class Address implements Serializable {
 
     public Address(){}
 
-    public Address(CityInfo cityInfo, String streetName){
-        this.cityInfo = cityInfo;
+    public Address(String streetName, String additionalInfo){
         this.streetName = streetName;
+        this.additionalInfo = additionalInfo;
         persons = new ArrayList<>();
     }
 
@@ -52,10 +51,14 @@ public class Address implements Serializable {
         this.streetName = streetName;
     }
 
-    //id
-    public Integer getId() {return id;}
+    //additional info
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
 
-    public void setId(Integer id) {this.id = id;}
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
 
     //persons
     public List<Person> getPersons() {

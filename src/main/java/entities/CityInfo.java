@@ -24,7 +24,7 @@ public class CityInfo implements Serializable {
 
     public CityInfo(Integer zipCode, String city){
         this.zipCode = zipCode;
-        this. city = city;
+        this.city = city;
         this.addresses = new ArrayList<>();
     }
 

@@ -1,20 +1,19 @@
 package dtos;
 
+import dtos.CityInfo.CityInfoDTO;
 import entities.Address;
-import entities.CityInfo;
-import entities.Hobby;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 
 public class AddressDTO {
 
-    private Integer id;
     private CityInfoDTO cityInfoDTO;
     private String streetName;
+    private String additionalInfo;
 
     public static List<AddressDTO> getAddressDtos(List<Address> adds){
         List<AddressDTO> addressdtos = new ArrayList();
@@ -25,12 +24,15 @@ public class AddressDTO {
     public AddressDTO(){}
 
     public AddressDTO(Address address){
-        if(address.getId() != null) {
-            this.id = address.getId();
-            this.cityInfoDTO = new CityInfoDTO(address.getCityInfo());
-            this.streetName = address.getStreetName();
+        this.streetName = address.getStreetName();
+        this.additionalInfo = address.getAdditionalInfo();
+        this.cityInfoDTO = new CityInfoDTO(address.getCityInfo());
+    }
 
-        }
+    public AddressDTO(String streetName, String additionalInfo, CityInfoDTO cityInfoDTO){
+        this.streetName = streetName;
+        this.additionalInfo = additionalInfo;
+        this.cityInfoDTO = cityInfoDTO;
     }
 
 /*
@@ -42,13 +44,13 @@ public class AddressDTO {
   */
 
 
-    //id
-    public Integer getId() {
-        return id;
+    //additional info
+    public String getAdditionalInfo() {
+        return additionalInfo;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 
     //city
@@ -68,6 +70,22 @@ public class AddressDTO {
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
+
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o) return true;
+        if(o==null || getClass() != o.getClass()) return false;
+        AddressDTO that = (AddressDTO) o;
+        return Objects.equals(streetName, that.streetName)&& Objects.equals(additionalInfo, that.additionalInfo) && Objects.equals(cityInfoDTO, that.cityInfoDTO);
+    }
+
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(streetName, additionalInfo, cityInfoDTO);
+    }
+
 
 
 

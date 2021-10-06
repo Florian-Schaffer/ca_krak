@@ -1,5 +1,8 @@
-package dtos;
+package dtos.Person;
 
+import dtos.AddressDTO;
+import dtos.Hobbies.HobbyDTO;
+import dtos.Phone.PhoneDTO;
 import entities.*;
 
 import java.util.ArrayList;
@@ -11,8 +14,7 @@ public class PersonDTO {
     public String firstName;
     public String lastName;
     public String email;
-    public List<Phone> phones;
-    public Integer age;
+    public List<PhoneDTO> phones;
     public AddressDTO addressDTO;
     public List<HobbyDTO> hobbyListDTO;
 
@@ -25,24 +27,24 @@ public class PersonDTO {
     public PersonDTO(){}
 
     public PersonDTO(Person person){
-        if(person.getId()!=null)
-            this.id=person.getId();
+        this.id=person.getId();
         this.firstName= person.getFirstName();
         this.lastName = person.getLastName();
         this.email = person.getEmail();
-        this.phones = person.getPhones();
+        this.phones = PhoneDTO.getPhoneDtos(person.getPhones());
         this.addressDTO = new AddressDTO(person.getAddress());
         this.hobbyListDTO = HobbyDTO.getHobbyDtos(person.getHobbyList());
     }
 
-    //age
-    public Integer getAge() {
-        return age;
+    public PersonDTO(String email, String firstName, String lastName, List<HobbyDTO> hobbies, List<PhoneDTO> phones, AddressDTO address){
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.hobbyListDTO = hobbies;
+        this.phones = phones;
+        this.addressDTO = address;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     //id
     public Integer getId() {
@@ -81,11 +83,11 @@ public class PersonDTO {
     }
 
     //phone
-    public List<Phone> getPhones() {
+    public List<PhoneDTO> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(List<PhoneDTO> phones) {
         this.phones = phones;
     }
 
@@ -105,6 +107,19 @@ public class PersonDTO {
 
     public void setHobby(List<HobbyDTO> hobby) {
         this.hobbyListDTO = hobby;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phones=" + phones +
+                ", addressDTO=" + addressDTO +
+                ", hobbyListDTO=" + hobbyListDTO +
+                '}';
     }
 }
 

@@ -25,8 +25,19 @@ public class AddressFacade {
     private EntityManager getEntityManager(){return emf.createEntityManager();}
 
     public AddressDTO createAddress(AddressDTO add){
-        Address address = new Address(add.getCityInfo(), add.getStreetName());
+        Address address = new Address(add.getStreetName(), add.getAdditionalInfo());
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            em.persist(address);
+            em.getTransaction().commit();
+        }finally {
+            em.close();
+        }
+    return new AddressDTO(address);
     }
+
+
 
 
 }
