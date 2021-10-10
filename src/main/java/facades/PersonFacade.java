@@ -133,11 +133,15 @@ public class PersonFacade {
         }
     }
 
-    public List<PersonDTO> getAll(){
+    public PersonsDTO getAll(){
         EntityManager em = emf.createEntityManager();
+        try{
         TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
         List<Person> persons = query.getResultList();
-        return PersonDTO.getPersonDtos(persons);
+        return new PersonsDTO(persons);}
+        finally {
+            em.close();
+        }
     }
 
     public Integer getNumberOfPeopleByHobby(String hobby){
